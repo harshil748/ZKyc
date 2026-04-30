@@ -1,0 +1,968 @@
+{
+  "network": "hardhat",
+  "chainId": "31337",
+  "deployedAt": "2026-04-30T11:22:43.268Z",
+  "contracts": {
+    "IdentityRegistry": {
+      "address": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+      "abi": [
+        {
+          "type": "constructor",
+          "stateMutability": "undefined",
+          "payable": false,
+          "inputs": []
+        },
+        {
+          "type": "error",
+          "name": "CommitmentAlreadyExists",
+          "inputs": []
+        },
+        {
+          "type": "error",
+          "name": "IdentityNotFound",
+          "inputs": []
+        },
+        {
+          "type": "error",
+          "name": "IdentityRevokedError",
+          "inputs": []
+        },
+        {
+          "type": "error",
+          "name": "NotAnIssuer",
+          "inputs": []
+        },
+        {
+          "type": "error",
+          "name": "OwnableInvalidOwner",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "owner"
+            }
+          ]
+        },
+        {
+          "type": "error",
+          "name": "OwnableUnauthorizedAccount",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "account"
+            }
+          ]
+        },
+        {
+          "type": "error",
+          "name": "ReentrancyGuardReentrantCall",
+          "inputs": []
+        },
+        {
+          "type": "error",
+          "name": "ZeroAddressNotAllowed",
+          "inputs": []
+        },
+        {
+          "type": "event",
+          "anonymous": false,
+          "name": "IdentityAttested",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "user",
+              "indexed": true
+            },
+            {
+              "type": "address",
+              "name": "issuer",
+              "indexed": true
+            },
+            {
+              "type": "uint256",
+              "name": "expiresAt",
+              "indexed": false
+            }
+          ]
+        },
+        {
+          "type": "event",
+          "anonymous": false,
+          "name": "IdentityRegistered",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "user",
+              "indexed": true
+            },
+            {
+              "type": "bytes32",
+              "name": "commitmentHash",
+              "indexed": true
+            },
+            {
+              "type": "uint256",
+              "name": "timestamp",
+              "indexed": false
+            }
+          ]
+        },
+        {
+          "type": "event",
+          "anonymous": false,
+          "name": "IdentityRevoked",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "user",
+              "indexed": true
+            },
+            {
+              "type": "address",
+              "name": "issuer",
+              "indexed": true
+            }
+          ]
+        },
+        {
+          "type": "event",
+          "anonymous": false,
+          "name": "IssuerAdded",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "issuer",
+              "indexed": true
+            }
+          ]
+        },
+        {
+          "type": "event",
+          "anonymous": false,
+          "name": "IssuerRemoved",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "issuer",
+              "indexed": true
+            }
+          ]
+        },
+        {
+          "type": "event",
+          "anonymous": false,
+          "name": "OwnershipTransferred",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "previousOwner",
+              "indexed": true
+            },
+            {
+              "type": "address",
+              "name": "newOwner",
+              "indexed": true
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "name": "addIssuer",
+          "constant": false,
+          "payable": false,
+          "inputs": [
+            {
+              "type": "address",
+              "name": "issuer"
+            }
+          ],
+          "outputs": []
+        },
+        {
+          "type": "function",
+          "name": "attestIdentity",
+          "constant": false,
+          "payable": false,
+          "inputs": [
+            {
+              "type": "address",
+              "name": "user"
+            },
+            {
+              "type": "uint256",
+              "name": "expiryDays"
+            }
+          ],
+          "outputs": []
+        },
+        {
+          "type": "function",
+          "name": "commitmentToAddress",
+          "constant": true,
+          "stateMutability": "view",
+          "payable": false,
+          "inputs": [
+            {
+              "type": "bytes32",
+              "name": ""
+            }
+          ],
+          "outputs": [
+            {
+              "type": "address",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "name": "getIdentity",
+          "constant": true,
+          "stateMutability": "view",
+          "payable": false,
+          "inputs": [
+            {
+              "type": "address",
+              "name": "user"
+            }
+          ],
+          "outputs": [
+            {
+              "type": "address",
+              "name": "issuer"
+            },
+            {
+              "type": "uint256",
+              "name": "expiresAt"
+            },
+            {
+              "type": "bool",
+              "name": "revoked"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "name": "identities",
+          "constant": true,
+          "stateMutability": "view",
+          "payable": false,
+          "inputs": [
+            {
+              "type": "address",
+              "name": ""
+            }
+          ],
+          "outputs": [
+            {
+              "type": "bytes32",
+              "name": "commitmentHash"
+            },
+            {
+              "type": "address",
+              "name": "issuer"
+            },
+            {
+              "type": "uint256",
+              "name": "issuedAt"
+            },
+            {
+              "type": "uint256",
+              "name": "expiresAt"
+            },
+            {
+              "type": "bool",
+              "name": "revoked"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "name": "isIdentityValid",
+          "constant": true,
+          "stateMutability": "view",
+          "payable": false,
+          "inputs": [
+            {
+              "type": "address",
+              "name": "user"
+            }
+          ],
+          "outputs": [
+            {
+              "type": "bool",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "name": "issuers",
+          "constant": true,
+          "stateMutability": "view",
+          "payable": false,
+          "inputs": [
+            {
+              "type": "address",
+              "name": ""
+            }
+          ],
+          "outputs": [
+            {
+              "type": "bool",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "name": "owner",
+          "constant": true,
+          "stateMutability": "view",
+          "payable": false,
+          "inputs": [],
+          "outputs": [
+            {
+              "type": "address",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "name": "registerIdentity",
+          "constant": false,
+          "payable": false,
+          "inputs": [
+            {
+              "type": "bytes32",
+              "name": "commitmentHash"
+            }
+          ],
+          "outputs": []
+        },
+        {
+          "type": "function",
+          "name": "removeIssuer",
+          "constant": false,
+          "payable": false,
+          "inputs": [
+            {
+              "type": "address",
+              "name": "issuer"
+            }
+          ],
+          "outputs": []
+        },
+        {
+          "type": "function",
+          "name": "renounceOwnership",
+          "constant": false,
+          "payable": false,
+          "inputs": [],
+          "outputs": []
+        },
+        {
+          "type": "function",
+          "name": "revokeIdentity",
+          "constant": false,
+          "payable": false,
+          "inputs": [
+            {
+              "type": "address",
+              "name": "user"
+            }
+          ],
+          "outputs": []
+        },
+        {
+          "type": "function",
+          "name": "transferOwnership",
+          "constant": false,
+          "payable": false,
+          "inputs": [
+            {
+              "type": "address",
+              "name": "newOwner"
+            }
+          ],
+          "outputs": []
+        }
+      ]
+    },
+    "CredentialVerifier": {
+      "address": "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+      "abi": [
+        {
+          "type": "constructor",
+          "stateMutability": "undefined",
+          "payable": false,
+          "inputs": []
+        },
+        {
+          "type": "error",
+          "name": "CredentialExpiredError",
+          "inputs": []
+        },
+        {
+          "type": "error",
+          "name": "CredentialNotFound",
+          "inputs": []
+        },
+        {
+          "type": "error",
+          "name": "CredentialRevokedError",
+          "inputs": []
+        },
+        {
+          "type": "error",
+          "name": "InvalidCredentialType",
+          "inputs": []
+        },
+        {
+          "type": "error",
+          "name": "NotAnIssuer",
+          "inputs": []
+        },
+        {
+          "type": "error",
+          "name": "OwnableInvalidOwner",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "owner"
+            }
+          ]
+        },
+        {
+          "type": "error",
+          "name": "OwnableUnauthorizedAccount",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "account"
+            }
+          ]
+        },
+        {
+          "type": "error",
+          "name": "ReentrancyGuardReentrantCall",
+          "inputs": []
+        },
+        {
+          "type": "error",
+          "name": "ZeroAddressNotAllowed",
+          "inputs": []
+        },
+        {
+          "type": "event",
+          "anonymous": false,
+          "name": "CredentialIssued",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "user",
+              "indexed": true
+            },
+            {
+              "type": "uint8",
+              "name": "credentialType",
+              "indexed": true
+            },
+            {
+              "type": "uint256",
+              "name": "expiresAt",
+              "indexed": false
+            }
+          ]
+        },
+        {
+          "type": "event",
+          "anonymous": false,
+          "name": "CredentialRevoked",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "user",
+              "indexed": true
+            },
+            {
+              "type": "uint8",
+              "name": "credentialType",
+              "indexed": true
+            }
+          ]
+        },
+        {
+          "type": "event",
+          "anonymous": false,
+          "name": "IssuerAuthorized",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "issuer",
+              "indexed": true
+            }
+          ]
+        },
+        {
+          "type": "event",
+          "anonymous": false,
+          "name": "IssuerRemoved",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "issuer",
+              "indexed": true
+            }
+          ]
+        },
+        {
+          "type": "event",
+          "anonymous": false,
+          "name": "OwnershipTransferred",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "previousOwner",
+              "indexed": true
+            },
+            {
+              "type": "address",
+              "name": "newOwner",
+              "indexed": true
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "name": "authorizeIssuer",
+          "constant": false,
+          "payable": false,
+          "inputs": [
+            {
+              "type": "address",
+              "name": "issuer"
+            }
+          ],
+          "outputs": []
+        },
+        {
+          "type": "function",
+          "name": "credentialTypeToString",
+          "constant": true,
+          "stateMutability": "pure",
+          "payable": false,
+          "inputs": [
+            {
+              "type": "uint8",
+              "name": "credentialType"
+            }
+          ],
+          "outputs": [
+            {
+              "type": "string",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "name": "credentials",
+          "constant": true,
+          "stateMutability": "view",
+          "payable": false,
+          "inputs": [
+            {
+              "type": "address",
+              "name": ""
+            },
+            {
+              "type": "uint8",
+              "name": ""
+            }
+          ],
+          "outputs": [
+            {
+              "type": "bytes32",
+              "name": "credentialHash"
+            },
+            {
+              "type": "uint256",
+              "name": "issuedAt"
+            },
+            {
+              "type": "uint256",
+              "name": "expiresAt"
+            },
+            {
+              "type": "bool",
+              "name": "revoked"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "name": "getCredentialMetadata",
+          "constant": true,
+          "stateMutability": "view",
+          "payable": false,
+          "inputs": [
+            {
+              "type": "address",
+              "name": "user"
+            },
+            {
+              "type": "uint8",
+              "name": "credentialType"
+            }
+          ],
+          "outputs": [
+            {
+              "type": "uint256",
+              "name": "issuedAt"
+            },
+            {
+              "type": "uint256",
+              "name": "expiresAt"
+            },
+            {
+              "type": "bool",
+              "name": "revoked"
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "name": "hasValidCredential",
+          "constant": true,
+          "stateMutability": "view",
+          "payable": false,
+          "inputs": [
+            {
+              "type": "address",
+              "name": "user"
+            },
+            {
+              "type": "uint8",
+              "name": "credentialType"
+            }
+          ],
+          "outputs": [
+            {
+              "type": "bool",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "name": "issueCredential",
+          "constant": false,
+          "payable": false,
+          "inputs": [
+            {
+              "type": "address",
+              "name": "user"
+            },
+            {
+              "type": "uint8",
+              "name": "credentialType"
+            },
+            {
+              "type": "bytes32",
+              "name": "credentialHash"
+            },
+            {
+              "type": "uint256",
+              "name": "expiryDays"
+            }
+          ],
+          "outputs": []
+        },
+        {
+          "type": "function",
+          "name": "issuers",
+          "constant": true,
+          "stateMutability": "view",
+          "payable": false,
+          "inputs": [
+            {
+              "type": "address",
+              "name": ""
+            }
+          ],
+          "outputs": [
+            {
+              "type": "bool",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "name": "owner",
+          "constant": true,
+          "stateMutability": "view",
+          "payable": false,
+          "inputs": [],
+          "outputs": [
+            {
+              "type": "address",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "name": "removeIssuer",
+          "constant": false,
+          "payable": false,
+          "inputs": [
+            {
+              "type": "address",
+              "name": "issuer"
+            }
+          ],
+          "outputs": []
+        },
+        {
+          "type": "function",
+          "name": "renounceOwnership",
+          "constant": false,
+          "payable": false,
+          "inputs": [],
+          "outputs": []
+        },
+        {
+          "type": "function",
+          "name": "revokeCredential",
+          "constant": false,
+          "payable": false,
+          "inputs": [
+            {
+              "type": "address",
+              "name": "user"
+            },
+            {
+              "type": "uint8",
+              "name": "credentialType"
+            }
+          ],
+          "outputs": []
+        },
+        {
+          "type": "function",
+          "name": "transferOwnership",
+          "constant": false,
+          "payable": false,
+          "inputs": [
+            {
+              "type": "address",
+              "name": "newOwner"
+            }
+          ],
+          "outputs": []
+        },
+        {
+          "type": "function",
+          "name": "verifyCredential",
+          "constant": true,
+          "stateMutability": "view",
+          "payable": false,
+          "inputs": [
+            {
+              "type": "address",
+              "name": "user"
+            },
+            {
+              "type": "uint8",
+              "name": "credentialType"
+            }
+          ],
+          "outputs": [
+            {
+              "type": "bool",
+              "name": ""
+            }
+          ]
+        }
+      ]
+    },
+    "AccessGate": {
+      "address": "0x9fE46736679d2D9a65F0992F2272dE9f3c7fa6e0",
+      "abi": [
+        {
+          "type": "constructor",
+          "stateMutability": "undefined",
+          "payable": false,
+          "inputs": [
+            {
+              "type": "address",
+              "name": "credentialVerifierAddress"
+            }
+          ]
+        },
+        {
+          "type": "error",
+          "name": "GateZeroAddressNotAllowed",
+          "inputs": []
+        },
+        {
+          "type": "error",
+          "name": "ReentrancyGuardReentrantCall",
+          "inputs": []
+        },
+        {
+          "type": "error",
+          "name": "UnauthorizedAccess",
+          "inputs": []
+        },
+        {
+          "type": "event",
+          "anonymous": false,
+          "name": "DepositWhitelisted",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "user",
+              "indexed": true
+            },
+            {
+              "type": "uint256",
+              "name": "amount",
+              "indexed": false
+            }
+          ]
+        },
+        {
+          "type": "event",
+          "anonymous": false,
+          "name": "WithdrawalExecuted",
+          "inputs": [
+            {
+              "type": "address",
+              "name": "user",
+              "indexed": true
+            },
+            {
+              "type": "uint256",
+              "name": "amount",
+              "indexed": false
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "name": "credentialVerifier",
+          "constant": true,
+          "stateMutability": "view",
+          "payable": false,
+          "inputs": [],
+          "outputs": [
+            {
+              "type": "address",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "name": "deposits",
+          "constant": true,
+          "stateMutability": "view",
+          "payable": false,
+          "inputs": [
+            {
+              "type": "address",
+              "name": ""
+            }
+          ],
+          "outputs": [
+            {
+              "type": "uint256",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "name": "getBalance",
+          "constant": true,
+          "stateMutability": "view",
+          "payable": false,
+          "inputs": [
+            {
+              "type": "address",
+              "name": "user"
+            }
+          ],
+          "outputs": [
+            {
+              "type": "uint256",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "name": "isUserVerified",
+          "constant": true,
+          "stateMutability": "view",
+          "payable": false,
+          "inputs": [
+            {
+              "type": "address",
+              "name": "user"
+            }
+          ],
+          "outputs": [
+            {
+              "type": "bool",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "name": "totalDeposits",
+          "constant": true,
+          "stateMutability": "view",
+          "payable": false,
+          "inputs": [],
+          "outputs": [
+            {
+              "type": "uint256",
+              "name": ""
+            }
+          ]
+        },
+        {
+          "type": "function",
+          "name": "whitelistDeposit",
+          "constant": false,
+          "stateMutability": "payable",
+          "payable": true,
+          "inputs": [],
+          "outputs": []
+        },
+        {
+          "type": "function",
+          "name": "whitelistWithdraw",
+          "constant": false,
+          "payable": false,
+          "inputs": [
+            {
+              "type": "uint256",
+              "name": "amount"
+            }
+          ],
+          "outputs": []
+        },
+        {
+          "type": "receive",
+          "stateMutability": "payable"
+        }
+      ]
+    }
+  }
+}
