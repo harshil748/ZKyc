@@ -12,6 +12,7 @@ cache/
 coverage/
 typechain-types/
 .DS_Store
+desktop.ini
 .AppleDouble
 .LSOverride
 *.log
